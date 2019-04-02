@@ -13142,7 +13142,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[77]:</div>
+<div class="prompt input_prompt">In&nbsp;[98]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Import libraries necessary for this project</span>
@@ -13214,34 +13214,34 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="prompt input_prompt">In&nbsp;[124]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#convert panda data_frame to numpy array</span>
-<span class="n">prices_array</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">prices</span><span class="p">);</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#print(prices)</span>
 
 <span class="c1"># TODO: Minimum price of the data</span>
-<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">prices_array</span><span class="o">.</span><span class="n">min</span><span class="p">()</span>
+<span class="n">minimum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Maximum price of the data</span>
-<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">prices_array</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+<span class="n">maximum_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># # TODO: Mean price of the data</span>
-<span class="n">mean_price</span> <span class="o">=</span> <span class="n">prices_array</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+<span class="n">mean_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># # TODO: Median price of the data</span>
-<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices_array</span><span class="p">)</span>
+<span class="n">median_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">median</span><span class="p">(</span><span class="n">prices</span><span class="p">)</span>
 
 <span class="c1"># TODO: Standard deviation of prices of the data</span>
-<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices_array</span><span class="p">)</span>
+<span class="n">std_price</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">prices</span><span class="p">,</span> <span class="n">ddof</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="c1">#print(prices.std())</span>
 
 <span class="c1"># Show the calculated statistics</span>
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Statistics for Boston housing dataset:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum price: $</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">minimum_price</span><span class="p">))</span> 
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum price: $</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">maximum_price</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean price: $</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_price</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median price $</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">median_price</span><span class="p">))</span>
-<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation of prices: $</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std_price</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Minimum price: $</span><span class="si">{:,.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">minimum_price</span><span class="p">))</span> 
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Maximum price: $</span><span class="si">{:,.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">maximum_price</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Mean price: $</span><span class="si">{:,.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">mean_price</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Median price $</span><span class="si">{:,.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">median_price</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Standard deviation of prices: $</span><span class="si">{:,.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">std_price</span><span class="p">))</span>
 </pre></div>
 
     </div>
@@ -13258,13 +13258,14 @@ div#notebook {
 
 
 <div class="output_subarea output_stream output_stdout output_text">
-<pre>Statistics for Boston housing dataset:
+<pre>165340.27765266786
+Statistics for Boston housing dataset:
 
-Minimum price: $105000.0
-Maximum price: $1024800.0
-Mean price: $454342.9447852761
-Median price $438900.0
-Standard deviation of prices: $165171.13154429474
+Minimum price: $105,000.00
+Maximum price: $1,024,800.00
+Mean price: $454,342.94
+Median price $438,900.00
+Standard deviation of prices: $165,340.28
 </pre>
 </div>
 </div>
@@ -13336,7 +13337,7 @@ Standard deviation of prices: $165171.13154429474
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[79]:</div>
+<div class="prompt input_prompt">In&nbsp;[106]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># TODO: Import &#39;r2_score&#39;</span>
@@ -13398,7 +13399,7 @@ Standard deviation of prices: $165171.13154429474
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[80]:</div>
+<div class="prompt input_prompt">In&nbsp;[107]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Calculate the performance of this model</span>
@@ -13450,7 +13451,11 @@ Standard deviation of prices: $165171.13154429474
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p><strong>Answer:</strong> I think this model have successfully captured the variation. Here high R2 score indicates the error in our model is lot less than simple model. Which means our model is able to predict better and captures the variations properly and is not overfitting.</p>
+<p><strong>Answer:</strong></p>
+<ul>
+<li>I think this model have successfully captured the variation. </li>
+<li>R-squared is a statistical measure of how close the data are to the regression line. To be exact, R square is the percentage of the response variable variation that is explained by a linear model. We can say that R-squared = Explained variation / Total variation. Here the 0.923 means the mean square error for this model is very small and this model has successfully captures the variability of the target variable.</li>
+</ul>
 
 </div>
 </div>
@@ -13525,10 +13530,12 @@ Standard deviation of prices: $165171.13154429474
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
+<p>Splitting data helps us to validate the quality of model learned from training data. Lets take an examples when we only have training data set.</p>
 <ul>
-<li>If we don't split data we will be training the data on whole set. That will add more rules and complexity to the model and can lead to Overfitting.</li>
-<li>Hence we have to split the data, first train the data and then test it. However in case the trainning data split is smaller. Maybe we can generalise the model and can end adding bias to model and will lead to Underfitting. But that will get cought in testing.</li>
-<li>Therefore we need to split data and in proper ratio.</li>
+<li>Our model will fall into 3 categories underfit, overfit or may be good fit.</li>
+<li>In case of <strong>underfit</strong> we can validate by the training scores, our training scores should be low.</li>
+<li>In case of model is <strong>overfitting</strong>, the scores will be high. We may assume that our model is doing great. But that may not be true. To verify that, we need an independent data to test. If we use same data then result will be better, as model is biased toward training data.</li>
+<li>Hence we need independent test data set. But we should not use test data to improve our model. That will bias the model towards test data. That’s where <strong>cross-validation</strong> technique comes into picture. </li>
 </ul>
 
 </div>
@@ -13607,9 +13614,9 @@ Think about the pros and cons of adding more training points based on if the tra
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>Graph with max_depth of 6.</li>
-<li>Training and Testing scores lines are close and parallel. If we add more training points, score of training curve can move more close to testing curve. Testing curve score can increase. </li>
-<li>For model with max_depth 6 it can help, as seen in the graph training and testing are slowly getting close.</li>
+<li>Graph with max_depth of 3.</li>
+<li>Initially training curve was very close to <code>1</code> and testing curve was close to <code>0</code>. Which shows the high variance and the model was overfitting. But as we added more points, both curve came close as the model was able to adust. Now score are somewhere b/w <code>7-8</code> and variance is very less, which seems to best fitting scenario. </li>
+<li>In this case we can clearly see that the curve has converged to its optimal score. Hence i believe more training points will not help here.</li>
 </ul>
 
 </div>
@@ -13763,8 +13770,17 @@ Think about the pros and cons of adding more training points based on if the tra
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>K-fold is used to make sure the same data is not used for prediction and testing. In this technique we divide the samples into k groups called folds of equal sizes. The prediction function will learn on k-1 folds and test on the remaining 1. We can use this technique k times and each time use different bucket for testing also make sure to discard the model.</li>
-<li>In Grid search if we use same training to train and test data to evaluate the performance of the algorithm. There is a chance of variance problems. The result may be different on different test data. Hence the f-fold can help here, where we use different test bucket k times.</li>
+<li>Cross validation is used to validate the performance of model. It will helps us to see how the model is generalising on an independent data set. K-fold is common type of the cross validation technique used in machine learning. <strong>K-fold</strong> cross validation follow below mentioned steps:<ul>
+<li>Partition the <strong>training</strong> dataset into k groups called folds of equal sizes. </li>
+<li>Train model using <strong>k-1 folds</strong> and <strong>validate</strong> the performance on remaining 1 fold.</li>
+<li>We can use this technique <strong>k times</strong> and each time use different cross-validation bucket, also make sure to discard the model.</li>
+<li>The <strong>average</strong> of performance scores calculated from k cases, is used to estimate the performance of the model. </li>
+<li>Once we select the best parameters using k-fold, we will use the <strong>test set</strong> to check the <strong>final performance</strong> of the model.</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>In Grid search we manually give multiple hyper-parameters and again tweak them. We do it until model doesn't perform. This is like leaking the <strong>test</strong> set into model or our model will get <strong>biased</strong> toward the test set. To solve this we need a cross validation layer. Hence we divide training set into 2 sets and introduce one more set called <strong>validation set</strong>. We iteratively tune our model based on training and validation set. Once the model experiment is finalised and validated, final evaluation is done on test data. But now by partitioning the whole data into 3 sets we reduced the number of samples for training. Hence the <strong>f-fold</strong> help here.</li>
 </ul>
 
 </div>
@@ -13949,7 +13965,7 @@ Think about the pros and cons of adding more training points based on if the tra
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[90]:</div>
+<div class="prompt input_prompt">In&nbsp;[126]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Produce a matrix for client data</span>
@@ -14010,7 +14026,7 @@ Predicted selling price for Client 3&#39;s home: $931,636.36
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[93]:</div>
+<div class="prompt input_prompt">In&nbsp;[125]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">vs</span><span class="o">.</span><span class="n">PredictTrials</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">prices</span><span class="p">,</span> <span class="n">fit_model</span><span class="p">,</span> <span class="n">client_data</span><span class="p">)</span>
@@ -14034,7 +14050,7 @@ Predicted selling price for Client 3&#39;s home: $931,636.36
 Trial 2: $419,700.00
 Trial 3: $415,800.00
 Trial 4: $420,622.22
-Trial 5: $413,334.78
+Trial 5: $418,377.27
 Trial 6: $411,931.58
 Trial 7: $399,663.16
 Trial 8: $407,232.00
