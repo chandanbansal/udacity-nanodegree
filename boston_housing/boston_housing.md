@@ -59,40 +59,41 @@ In the code cell below, you will need to implement the following:
 
 
 ```python
-#convert panda data_frame to numpy array
-prices_array = np.array(prices);
+#print(prices)
 
 # TODO: Minimum price of the data
-minimum_price = prices_array.min()
+minimum_price = np.min(prices)
 
 # TODO: Maximum price of the data
-maximum_price = prices_array.max()
+maximum_price = np.max(prices)
 
 # # TODO: Mean price of the data
-mean_price = prices_array.mean()
+mean_price = np.mean(prices)
 
 # # TODO: Median price of the data
-median_price = np.median(prices_array)
+median_price = np.median(prices)
 
 # TODO: Standard deviation of prices of the data
-std_price = np.std(prices_array)
+std_price = np.std(prices, ddof=1)
+#print(prices.std())
 
 # Show the calculated statistics
 print("Statistics for Boston housing dataset:\n")
-print("Minimum price: ${}".format(minimum_price)) 
-print("Maximum price: ${}".format(maximum_price))
-print("Mean price: ${}".format(mean_price))
-print("Median price ${}".format(median_price))
-print("Standard deviation of prices: ${}".format(std_price))
+print("Minimum price: ${:,.2f}".format(minimum_price)) 
+print("Maximum price: ${:,.2f}".format(maximum_price))
+print("Mean price: ${:,.2f}".format(mean_price))
+print("Median price ${:,.2f}".format(median_price))
+print("Standard deviation of prices: ${:,.2f}".format(std_price))
 ```
 
+    165340.27765266786
     Statistics for Boston housing dataset:
     
-    Minimum price: $105000.0
-    Maximum price: $1024800.0
-    Mean price: $454342.9447852761
-    Median price $438900.0
-    Standard deviation of prices: $165171.13154429474
+    Minimum price: $105,000.00
+    Maximum price: $1,024,800.00
+    Mean price: $454,342.94
+    Median price $438,900.00
+    Standard deviation of prices: $165,340.28
 
 
 ### Question 1 - Feature Observation
@@ -179,7 +180,9 @@ print("Model has a coefficient of determination, R^2, of {:.3f}.".format(score))
 * R2 score between 0 and 1 indicates the extent to which the dependent variable is predictable. An 
 * R2 score of 0.40 means that 40 percent of the variance in Y is predictable from X.
 
-**Answer:** I think this model have successfully captured the variation. Here high R2 score indicates the error in our model is lot less than simple model. Which means our model is able to predict better and captures the variations properly and is not overfitting.
+**Answer:** 
+* I think this model have successfully captured the variation. 
+* R-squared is a statistical measure of how close the data are to the regression line. To be exact, R square is the percentage of the response variable variation that is explained by a linear model. We can say that R-squared = Explained variation / Total variation. Here the 0.923 means the mean square error for this model is very small and this model has successfully captures the variability of the target variable.
 
 ### Implementation: Shuffle and Split Data
 Your next implementation requires that you take the Boston housing dataset and split the data into training and testing subsets. Typically, the data is also shuffled into a random order when creating the training and testing subsets to remove any bias in the ordering of the dataset.
@@ -212,9 +215,13 @@ print("Training and testing split was successful.")
 **Hint:** Think about how overfitting or underfitting is contingent upon how splits on data is done.
 
 **Answer:** 
-* If we don't split data we will be training the data on whole set. That will add more rules and complexity to the model and can lead to Overfitting.
-* Hence we have to split the data, first train the data and then test it. However in case the trainning data split is smaller. Maybe we can generalise the model and can end adding bias to model and will lead to Underfitting. But that will get cought in testing.
-* Therefore we need to split data and in proper ratio.
+
+Splitting data helps us to validate the quality of model learned from training data. Lets take an examples when we only have training data set.
+* Our model will fall into 3 categories underfit, overfit or may be good fit.
+* In case of **underfit** we can validate by the training scores, our training scores should be low.
+* In case of model is **overfitting**, the scores will be high. We may assume that our model is doing great. But that may not be true. To verify that, we need an independent data to test. If we use same data then result will be better, as model is biased toward training data.
+* Hence we need independent test data set. But we should not use test data to improve our model. That will bias the model towards test data. That’s where **cross-validation** technique comes into picture. 
+
 
 
 ----
@@ -246,9 +253,9 @@ vs.ModelLearning(features, prices)
 Think about the pros and cons of adding more training points based on if the training and testing curves are converging.
 
 **Answer:**
-* Graph with max_depth of 6.
-* Training and Testing scores lines are close and parallel. If we add more training points, score of training curve can move more close to testing curve. Testing curve score can increase. 
-* For model with max_depth 6 it can help, as seen in the graph training and testing are slowly getting close.
+* Graph with max_depth of 3.
+* Initially training curve was very close to `1` and testing curve was close to `0`. Which shows the high variance and the model was overfitting. But as we added more points, both curve came close as the model was able to adust. Now score are somewhere b/w `7-8` and variance is very less, which seems to best fitting scenario. 
+* In this case we can clearly see that the curve has converged to its optimal score. Hence i believe more training points will not help here.
 
 
 ### Complexity Curves
@@ -314,8 +321,16 @@ In this final section of the project, you will construct a model and make a pred
 When thinking about how k-fold cross validation helps grid search, think about the main drawbacks of grid search which are hinged upon **using a particular subset of data for training or testing** and how k-fold cv could help alleviate that. You can refer to the [docs](http://scikit-learn.org/stable/modules/cross_validation.html#cross-validation) for your answer.
 
 **Answer:**
-* K-fold is used to make sure the same data is not used for prediction and testing. In this technique we divide the samples into k groups called folds of equal sizes. The prediction function will learn on k-1 folds and test on the remaining 1. We can use this technique k times and each time use different bucket for testing also make sure to discard the model.
-* In Grid search if we use same training to train and test data to evaluate the performance of the algorithm. There is a chance of variance problems. The result may be different on different test data. Hence the f-fold can help here, where we use different test bucket k times.
+* Cross validation is used to validate the performance of model. It will helps us to see how the model is generalising on an independent data set. K-fold is common type of the cross validation technique used in machine learning. **K-fold** cross validation follow below mentioned steps:
+    * Partition the **training** dataset into k groups called folds of equal sizes. 
+    * Train model using **k-1 folds** and **validate** the performance on remaining 1 fold.
+    *  We can use this technique **k times** and each time use different cross-validation bucket, also make sure to discard the model.
+    * The **average** of performance scores calculated from k cases, is used to estimate the performance of the model. 
+    * Once we select the best parameters using k-fold, we will use the **test set** to check the **final performance** of the model.
+
+
+* In Grid search we manually give multiple hyper-parameters and again tweak them. We do it until model doesn't perform. This is like leaking the **test** set into model or our model will get **biased** toward the test set. To solve this we need a cross validation layer. Hence we divide training set into 2 sets and introduce one more set called **validation set**. We iteratively tune our model based on training and validation set. Once the model experiment is finalised and validated, final evaluation is done on test data. But now by partitioning the whole data into 3 sets we reduced the number of samples for training. Hence the **f-fold** help here.
+
 
 ### Implementation: Fitting a Model
 Your final implementation requires that you bring everything together and train a model using the **decision tree algorithm**. To ensure that you are producing an optimized model, you will train the model using the grid search technique to optimize the `'max_depth'` parameter for the decision tree. The `'max_depth'` parameter can be thought of as how many questions the decision tree algorithm is allowed to ask about the data before making a prediction. Decision trees are part of a class of algorithms called *supervised learning algorithms*.
@@ -445,7 +460,7 @@ vs.PredictTrials(features, prices, fit_model, client_data)
     Trial 2: $419,700.00
     Trial 3: $415,800.00
     Trial 4: $420,622.22
-    Trial 5: $413,334.78
+    Trial 5: $418,377.27
     Trial 6: $411,931.58
     Trial 7: $399,663.16
     Trial 8: $407,232.00
